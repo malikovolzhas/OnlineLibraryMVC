@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineLibraryDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pages" Type="int" />
+  </EntityType>
+  <EntityType Name="BookCopy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="inventory_number" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="is_available" Type="bit" Nullable="false" />
+    <Property Name="take_date" Type="smalldatetime" Nullable="false" />
+    <Property Name="return_date" Type="smalldatetime" />
+    <Property Name="book_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Books_Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="book_id" Type="int" Nullable="false" />
+    <Property Name="author_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spr_Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sex" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="sex_kz" Type="nvarchar" MaxLength="10" />
+    <Property Name="sex_ru" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="subscription_number" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="sex_id" Type="int" />
+    <Property Name="birth_date" Type="date" Nullable="false" />
+    <Property Name="phone" Type="nchar" MaxLength="11" />
+  </EntityType>
+  <EntityType Name="Subscriptions_Books">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subscription_id" Type="int" Nullable="false" />
+    <Property Name="book_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BookCopy_ToBook">
+    <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="BookCopy" Type="Self.BookCopy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookCopy">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Books_Authors_ToAuthor">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="Books_Authors" Type="Self.Books_Authors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books_Authors">
+        <PropertyRef Name="author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Books_Authors_ToBook">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="Books_Authors" Type="Self.Books_Authors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books_Authors">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscription_ToSprSex">
+    <End Role="spr_Sex" Type="Self.spr_Sex" Multiplicity="0..1" />
+    <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="spr_Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="sex_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_ToBook">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="Subscriptions_Books" Type="Self.Subscriptions_Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscriptions_Books">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_ToSubscription">
+    <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+    <End Role="Subscriptions_Books" Type="Self.Subscriptions_Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscription">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscriptions_Books">
+        <PropertyRef Name="subscription_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineLibraryDbModelStoreContainer">
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookCopy" EntityType="Self.BookCopy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Books_Authors" EntityType="Self.Books_Authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="spr_Sex" EntityType="Self.spr_Sex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscriptions_Books" EntityType="Self.Subscriptions_Books" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BookCopy_ToBook" Association="Self.FK_BookCopy_ToBook">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookCopy" EntitySet="BookCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Books_Authors_ToAuthor" Association="Self.FK_Books_Authors_ToAuthor">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Books_Authors" EntitySet="Books_Authors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Books_Authors_ToBook" Association="Self.FK_Books_Authors_ToBook">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Books_Authors" EntitySet="Books_Authors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscription_ToSprSex" Association="Self.FK_Subscription_ToSprSex">
+      <End Role="spr_Sex" EntitySet="spr_Sex" />
+      <End Role="Subscription" EntitySet="Subscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_ToBook" Association="Self.FK_Table_ToBook">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Subscriptions_Books" EntitySet="Subscriptions_Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_ToSubscription" Association="Self.FK_Table_ToSubscription">
+      <End Role="Subscription" EntitySet="Subscription" />
+      <End Role="Subscriptions_Books" EntitySet="Subscriptions_Books" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineLibraryDbModelStoreContainer" CdmEntityContainer="OnlineLibraryDbEntities1">
+    <EntitySetMapping Name="Author">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pages" ColumnName="pages" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookCopy">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.BookCopy">
+        <MappingFragment StoreEntitySet="BookCopy">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="inventory_number" ColumnName="inventory_number" />
+          <ScalarProperty Name="is_available" ColumnName="is_available" />
+          <ScalarProperty Name="take_date" ColumnName="take_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books_Authors">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.Books_Authors">
+        <MappingFragment StoreEntitySet="Books_Authors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spr_Sex">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.spr_Sex">
+        <MappingFragment StoreEntitySet="spr_Sex">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="sex_kz" ColumnName="sex_kz" />
+          <ScalarProperty Name="sex_ru" ColumnName="sex_ru" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscription">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.Subscription">
+        <MappingFragment StoreEntitySet="Subscription">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="subscription_number" ColumnName="subscription_number" />
+          <ScalarProperty Name="sex_id" ColumnName="sex_id" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions_Books">
+      <EntityTypeMapping TypeName="OnlineLibraryDbModel.Subscriptions_Books">
+        <MappingFragment StoreEntitySet="Subscriptions_Books">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="subscription_id" ColumnName="subscription_id" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

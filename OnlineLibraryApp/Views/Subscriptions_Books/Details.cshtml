@@ -1,0 +1,35 @@
+﻿@model OnlineLibraryApp.Models.Subscriptions_Books
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subscriptions_Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subscription.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subscription.last_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

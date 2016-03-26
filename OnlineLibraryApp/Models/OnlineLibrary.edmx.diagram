@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51f3ea30cc214c0b87026d1927de37f3" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.Author" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.Book" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.BookCopy" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.Books_Authors" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.spr_Sex" Width="1.5" PointX="1.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.Subscription" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineLibraryDbModel.Subscriptions_Books" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_Books_Authors_ToAuthor" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_BookCopy_ToBook" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_Books_Authors_ToBook" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_Table_ToBook" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_Subscription_ToSprSex" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineLibraryDbModel.FK_Table_ToSubscription" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
